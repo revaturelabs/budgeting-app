@@ -18,6 +18,7 @@ public class BudgetingApplicationTests {
 	static AssociateImplementation service = new AssociateImplementation();
 	static double precision = 0.01; 
 	static List<Expense> expenses;
+	static List<Expense> moreExpenses;
 	static List<Expense> oddexpenses;
 	static User dan;
 	static User randolph;
@@ -51,6 +52,18 @@ public class BudgetingApplicationTests {
 		oddexpenses.add(new Expense(7, "g", "C", 3.25, randolph));
 		oddexpenses.add(new Expense(8, "h", "D", 10.50, howard));
 		oddexpenses.add(new Expense(10, "j", "B", 15.50, howard));
+		
+		moreExpenses = new LinkedList<>();
+		moreExpenses.add(new Expense(1, "a", "A", 7.50, dan));
+		moreExpenses.add(new Expense(2, "b", "A", 8.50, dan));
+		moreExpenses.add(new Expense(3, "c", "C", 3.10, dan));
+		moreExpenses.add(new Expense(4, "d", "D", 9.50, dan));
+		moreExpenses.add(new Expense(5, "e", "A", 4.10, randolph));
+		moreExpenses.add(new Expense(6, "f", "B", 2.15, randolph));
+		moreExpenses.add(new Expense(7, "g", "B", 3.25, randolph));
+		moreExpenses.add(new Expense(8, "h", "C", 2.50, howard));
+		moreExpenses.add(new Expense(9, "i", "C", 1.20, howard));
+		moreExpenses.add(new Expense(10, "j", "B", 15.50, howard));
 	} 
 	
 	@Test
@@ -95,10 +108,17 @@ public class BudgetingApplicationTests {
 	}
 
 	@Test
-	public void avgCallTimePerUser() {
+	public void highestExpenseCategoryPerUser() {
+		// test highest
 		Map<User, String> testTotal = service.highestExpenseCategoryPerUser(expenses);
 		assertEquals("D", testTotal.get(new User(1, "Dan", "Pickles")));
 		assertEquals("A", testTotal.get(new User(2, "Randolph", "Scott")) );
+		assertEquals("B", testTotal.get(new User(3, "Howard", "Johnson")));
+		
+		// test when multiple records in same category
+		testTotal = service.highestExpenseCategoryPerUser(moreExpenses);
+		assertEquals("A", testTotal.get(new User(1, "Dan", "Pickles")));
+		assertEquals("B", testTotal.get(new User(2, "Randolph", "Scott")) );
 		assertEquals("B", testTotal.get(new User(3, "Howard", "Johnson")));
 	}
 

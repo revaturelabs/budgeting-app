@@ -141,5 +141,5 @@ public class Expense {
 		return "Expense [id=" + id + ", merchant=" + merchant + ", category=" + category + ", cost=" + cost + ", user="
 				+ user + "]";
 	}
-	
+
 }

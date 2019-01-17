@@ -16,7 +16,7 @@ import com.revature.spark.beans.User;
 public class AssociateImplementation {
 
 	/**
-	 * Find the sum of all expenses. 
+	 * Find the sum of all expenses.
 	 * 
 	 * @param calls
 	 * @return
